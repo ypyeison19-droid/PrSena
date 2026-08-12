@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Formación académica | Empléate</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8f6;
+            color: #17251c;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 72px;
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            border-bottom: 1px solid #e6ece8;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #17251c;
+        }
+
+        .logo span {
+            color: #39a900;
+        }
+
+        .volver {
+            text-decoration: none;
+            color: #566159;
+            font-weight: 600;
+
+            transition: .2s;
+        }
+
+        .volver:hover {
+            color: #39a900;
+        }
+
+
+        /* =========================
+           CONTENEDOR
+        ========================= */
+
+        .contenedor {
+            width: 90%;
+            max-width: 1050px;
+
+            margin: auto;
+
+            padding: 55px 0 80px;
+        }
+
+
+        /* =========================
+           ENCABEZADO
+        ========================= */
+
+        .encabezado {
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+        .icono {
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 20px;
+
+            background: #e8f7df;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 34px;
+        }
+
+        .encabezado h1 {
+            font-size: 38px;
+
+            margin-bottom: 12px;
+        }
+
+        .encabezado h1 span {
+            color: #39a900;
+        }
+
+        .encabezado p {
+            color: #6c776f;
+
+            font-size: 16px;
+
+            max-width: 600px;
+
+            margin: auto;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 15px 45px rgba(35, 70, 45, .09);
+
+            border: 1px solid #edf2ee;
+        }
+
+
+        /* =========================
+           TITULO CARD
+        ========================= */
+
+        .card-header {
+            margin-bottom: 30px;
+        }
+
+        .card-header h2 {
+            font-size: 22px;
+
+            margin-bottom: 7px;
+        }
+
+        .card-header p {
+            color: #778179;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           FORMULARIO
+        ========================= */
+
+        .formulario {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 22px;
+        }
+
+        .campo {
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .campo-completo {
+            grid-column: 1 / -1;
+        }
+
+        .campo label {
+            font-size: 14px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+
+            color: #26342b;
+        }
+
+        .campo input,
+        .campo select {
+
+            width: 100%;
+
+            padding: 14px 15px;
+
+            border-radius: 10px;
+
+            border: 1px solid #dce5df;
+
+            background: #fbfcfb;
+
+            font-size: 15px;
+
+            color: #253128;
+
+            outline: none;
+
+            transition: .2s;
+        }
+
+        .campo input:focus,
+        .campo select:focus {
+
+            border-color: #39a900;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 3px rgba(57, 169, 0, .10);
+        }
+
+
+        /* =========================
+           AYUDA
+        ========================= */
+
+        .ayuda {
+
+            margin-top: 7px;
+
+            font-size: 12px;
+
+            color: #89928c;
+        }
+
+
+        /* =========================
+           BOTONES
+        ========================= */
+
+        .acciones {
+
+            grid-column: 1 / -1;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 15px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid #edf1ee;
+        }
+
+        .btn-volver {
+
+            text-decoration: none;
+
+            color: #69746d;
+
+            font-weight: 600;
+
+            padding: 13px 18px;
+
+            border-radius: 9px;
+
+            transition: .2s;
+        }
+
+        .btn-volver:hover {
+
+            background: #f1f4f2;
+
+            color: #253128;
+        }
+
+        .btn-guardar {
+
+            border: none;
+
+            background: #39a900;
+
+            color: white;
+
+            padding: 14px 25px;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+            box-shadow:
+                0 7px 18px rgba(57, 169, 0, .20);
+        }
+
+        .btn-guardar:hover {
+
+            background: #2f8d00;
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================
+           CONSEJO
+        ========================= */
+
+        .consejo {
+
+            margin-top: 25px;
+
+            background: #f0f8eb;
+
+            border: 1px solid #dcefd1;
+
+            border-radius: 14px;
+
+            padding: 18px 20px;
+
+            display: flex;
+
+            gap: 13px;
+
+            align-items: flex-start;
+        }
+
+        .consejo-icono {
+            font-size: 21px;
+        }
+
+        .consejo strong {
+            display: block;
+
+            margin-bottom: 4px;
+
+            color: #2d570e;
+        }
+
+        .consejo p {
+            color: #5d6b60;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .contenedor {
+                width: 92%;
+
+                padding-top: 35px;
+            }
+
+            .encabezado h1 {
+                font-size: 30px;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            .formulario {
+                grid-template-columns: 1fr;
+            }
+
+            .campo-completo {
+                grid-column: auto;
+            }
+
+            .acciones {
+                flex-direction: column-reverse;
+
+                gap: 12px;
+
+                align-items: stretch;
+            }
+
+            .btn-guardar,
+            .btn-volver {
+                width: 100%;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            Emplé<span>ate</span>
+
+        </div>
+
+
+        <a
+            href="{% url 'inicio_usuarios1' %}"
+            class="volver"
+        >
+
+            ← Mi perfil
+
+        </a>
+
+    </nav>
+
+
+
+    <!-- CONTENIDO -->
+
+    <main class="contenedor">
+
+
+        <!-- ENCABEZADO -->
+
+        <section class="encabezado">
+
+            <div class="icono">
+
+                🎓
+
+            </div>
+
+
+            <h1>
+
+                Tu formación
+                <span>académica</span>
+
+            </h1>
+
+
+            <p>
+
+                Agrega tus estudios, cursos y certificaciones
+                para fortalecer tu perfil profesional.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- FORMULARIO -->
+
+        <section class="card">
+
+
+            <div class="card-header">
+
+                <h2>
+
+                    Agregar formación
+
+                </h2>
+
+
+                <p>
+
+                    Completa la información de tus estudios.
+
+                </p>
+
+            </div>
+
+
+
+            <form
+                method="POST"
+                class="formulario"
+            >
+
+                {% csrf_token %}
+
+
+
+                <!-- TITULO -->
+
+                <div class="campo campo-completo">
+
+                    <label for="{{ formulario.titulo.id_for_label }}">
+
+                        Título o programa
+
+                    </label>
+
+
+                    {{ formulario.titulo }}
+
+
+                    <span class="ayuda">
+
+                        Ejemplo: Tecnólogo en Análisis y Desarrollo de Software
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- INSTITUCION -->
+
+                <div class="campo">
+
+                    <label for="{{ formulario.institucion.id_for_label }}">
+
+                        Institución
+
+                    </label>
+
+
+                    {{ formulario.institucion }}
+
+
+                </div>
+
+
+
+                <!-- ESTADO -->
+
+                <div class="campo">
+
+                    <label for="{{ formulario.estado.id_for_label }}">
+
+                        Estado
+
+                    </label>
+
+
+                    {{ formulario.estado }}
+
+                </div>
+
+
+
+                <!-- AÑO -->
+
+                <div class="campo">
+
+                    <label for="{{ formulario.año.id_for_label }}">
+
+                        Año
+
+                    </label>
+
+
+                    {{ formulario.año }}
+
+                </div>
+
+
+
+                <!-- BOTONES -->
+
+                <div class="acciones">
+
+
+                    <a
+                        href="{% url 'inicio_usuarios1' %}"
+                        class="btn-volver"
+                    >
+
+                        Cancelar
+
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="btn-guardar"
+                    >
+
+                        💾 Guardar formación
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+
+        <!-- CONSEJO -->
+
+        <div class="consejo">
+
+            <div class="consejo-icono">
+
+                💡
+
+            </div>
+
+
+            <div>
+
+                <strong>
+
+                    Consejo de Empléate
+
+                </strong>
+
+
+                <p>
+
+                    Agrega primero tu formación más reciente.
+                    Esto ayudará a los empleadores a conocer
+                    rápidamente tu preparación profesional.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

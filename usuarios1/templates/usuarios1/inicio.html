@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi perfil | Empléate</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8f6;
+            color: #17251c;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            height: 72px;
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .07);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #39a900;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #46524a;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links .activo {
+            color: #39a900;
+        }
+
+        .nav-button {
+            background: #39a900;
+            color: white !important;
+            padding: 10px 18px;
+            border-radius: 9px;
+        }
+
+
+        /* =========================
+           CONTENEDOR
+        ========================= */
+
+        .contenedor {
+            width: 86%;
+            max-width: 1150px;
+            margin: auto;
+            padding: 65px 0;
+        }
+
+
+        /* =========================
+           ENCABEZADO
+        ========================= */
+
+        .encabezado {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 40px;
+        }
+
+        .encabezado h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .encabezado h1 span {
+            color: #39a900;
+        }
+
+        .encabezado p {
+            color: #69756d;
+            font-size: 17px;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e8f7df;
+
+            border-radius: 50%;
+
+            font-size: 45px;
+        }
+
+
+        /* =========================
+           PROGRESO
+        ========================= */
+
+        .progreso {
+            background: white;
+            padding: 25px;
+
+            border-radius: 16px;
+
+            border: 1px solid #e2e9e4;
+
+            margin-bottom: 30px;
+        }
+
+        .progreso-header {
+            display: flex;
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+
+            font-weight: bold;
+        }
+
+        .barra {
+            height: 10px;
+            background: #e4ebe6;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .barra-progreso {
+            width: 25%;
+            height: 100%;
+            background: #39a900;
+        }
+
+        .progreso-texto {
+            color: #69756d;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           GRID
+        ========================= */
+
+        .grid {
+            display: grid;
+
+            grid-template-columns: 2fr 1fr;
+
+            gap: 25px;
+        }
+
+
+        /* =========================
+           TARJETAS
+        ========================= */
+
+        .card {
+            background: white;
+
+            border: 1px solid #e2e9e4;
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .04);
+
+            margin-bottom: 25px;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 25px;
+        }
+
+        .card-title-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #e8f7df;
+
+            border-radius: 12px;
+
+            font-size: 23px;
+        }
+
+        .card-title h2 {
+            font-size: 21px;
+        }
+
+        .card-title p {
+            color: #7a847d;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+
+        /* =========================
+           DATOS
+        ========================= */
+
+        .datos {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+        .dato {
+            padding: 16px;
+
+            background: #f7faf8;
+
+            border-radius: 10px;
+        }
+
+        .dato small {
+            display: block;
+
+            color: #7a847d;
+
+            margin-bottom: 6px;
+        }
+
+        .dato strong {
+            color: #26352b;
+        }
+
+
+        /* =========================
+           OPCIONES
+        ========================= */
+
+        .opciones {
+            display: grid;
+            gap: 15px;
+        }
+
+        .opcion {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            padding: 18px;
+
+            border: 1px solid #e2e9e4;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            color: #26352b;
+
+            transition: .3s;
+        }
+
+        .opcion:hover {
+            border-color: #39a900;
+            transform: translateX(4px);
+        }
+
+        .opcion-icono {
+            font-size: 28px;
+        }
+
+        .opcion h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .opcion p {
+            color: #7a847d;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           IA
+        ========================= */
+
+        .ia {
+            background: #17251c;
+
+            color: white;
+
+            border-radius: 18px;
+
+            padding: 30px;
+        }
+
+        .ia-icono {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .ia h2 {
+            margin-bottom: 12px;
+        }
+
+        .ia p {
+            color: #bac5bd;
+            line-height: 1.6;
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+        .ia-boton {
+            display: inline-block;
+
+            background: #39a900;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 11px 18px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           VOLVER
+        ========================= */
+
+        .volver {
+            margin-top: 35px;
+        }
+
+        .volver a {
+            text-decoration: none;
+            color: #59645d;
+            font-weight: 600;
+        }
+
+        .volver a:hover {
+            color: #39a900;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #101812;
+            color: #9ca89f;
+
+            text-align: center;
+
+            padding: 28px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .encabezado {
+                align-items: flex-start;
+            }
+
+            .avatar {
+                width: 70px;
+                height: 70px;
+                font-size: 35px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .nav-links a:not(.nav-button) {
+                display: none;
+            }
+
+            .contenedor {
+                width: 92%;
+                padding-top: 45px;
+            }
+
+            .encabezado h1 {
+                font-size: 30px;
+            }
+
+            .datos {
+                grid-template-columns: 1fr;
+            }
+
+            .avatar {
+                display: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Emplé<span>éate</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Inicio
+            </a>
+
+            <a href="/usuarios1/" class="activo">
+                Mi perfil
+            </a>
+
+            <a href="/admin/" class="nav-button">
+                Administración
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         CONTENIDO
+    ========================= -->
+
+    <main class="contenedor">
+
+
+        <!-- ENCABEZADO -->
+
+        <section class="encabezado">
+
+            <div>
+
+                <h1>
+                    Mi perfil <span>profesional</span>
+                </h1>
+
+                <p>
+                    Completa tu información para prepararte
+                    mejor para tu próximo empleo.
+                </p>
+
+            </div>
+
+
+            <div class="avatar">
+                👤
+            </div>
+
+        </section>
+
+
+        <!-- PROGRESO -->
+
+        <section class="progreso">
+
+            <div class="progreso-header">
+
+                <span>
+                    Perfil profesional
+                </span>
+
+                <span>
+                    25%
+                </span>
+
+            </div>
+
+
+            <div class="barra">
+
+                <div class="barra-progreso"></div>
+
+            </div>
+
+
+            <p class="progreso-texto">
+
+                Completa tu información para mejorar
+                tu perfil profesional.
+
+            </p>
+
+        </section>
+
+
+        <!-- GRID -->
+
+        <div class="grid">
+
+
+            <!-- COLUMNA PRINCIPAL -->
+
+            <div>
+
+
+                <!-- INFORMACIÓN PERSONAL -->
+
+                <section class="card">
+
+                    <div class="card-title">
+
+                        <div class="card-title-icon">
+                            👤
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Información personal
+                            </h2>
+
+                            <p>
+                                Tus datos básicos
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="datos">
+
+
+                        <div class="dato">
+
+                            <small>
+                                Nombre completo
+                            </small>
+
+                            <strong>
+    {% if usuario %}
+        {{ usuario.nombre }} {{ usuario.apellido }}
+    {% else %}
+        Aún no registrado
+    {% endif %}
+</strong>
+
+                        </div>
+
+
+                        <div class="dato">
+
+                            <small>
+                                Correo electrónico
+                            </small>
+
+                            <strong>
+    {% if usuario %}
+        {{ usuario.correo }}
+    {% else %}
+        Aún no registrado
+    {% endif %}
+</strong>
+
+                        </div>
+
+
+                        <div class="dato">
+
+                            <small>
+                                Teléfono
+                            </small>
+
+                            <strong>
+    {% if usuario %}
+        {{ usuario.telefono }}
+    {% else %}
+        Aún no registrado
+    {% endif %}
+</strong>
+
+                        </div>
+
+
+                        <div class="dato">
+
+                            <small>
+                                Ciudad
+                            </small>
+
+                            <strong>
+    {% if usuario %}
+        {{ usuario.ciudad }}
+    {% else %}
+        Aún no registrada
+    {% endif %}
+</strong>
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+                <!-- PERFIL PROFESIONAL -->
+
+                <section class="card">
+
+                    <div class="card-title">
+
+                        <div class="card-title-icon">
+                            📄
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Mi hoja de vida
+                            </h2>
+
+                            <p>
+                                Construye tu perfil laboral
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="opciones">
+
+
+                        <a href="#" class="opcion">
+
+                            <div class="opcion-icono">
+                                🎓
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Formación académica
+                                </h3>
+
+                                <p>
+                                    Agrega tus estudios y formación.
+                                </p>
+
+                            </div>
+
+                        </a>
+
+
+                        <a href="#" class="opcion">
+
+                            <div class="opcion-icono">
+                                💼
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Experiencia laboral
+                                </h3>
+
+                                <p>
+                                    Cuéntanos sobre tus experiencias.
+                                </p>
+
+                            </div>
+
+                        </a>
+
+
+                        <a href="#" class="opcion">
+
+                            <div class="opcion-icono">
+                                🧠
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Habilidades
+                                </h3>
+
+                                <p>
+                                    Identifica tus fortalezas.
+                                </p>
+
+                            </div>
+
+                        </a>
+
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- COLUMNA LATERAL -->
+
+            <aside>
+
+
+                <!-- REGISTRO -->
+
+                <section class="card">
+
+                    <div class="card-title">
+
+                        <div class="card-title-icon">
+                            🚀
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Comienza aquí
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <p style="color:#69756d; line-height:1.6; margin-bottom:20px;">
+
+                        Completa tus datos personales
+                        para comenzar a construir tu
+                        perfil profesional.
+
+                    </p>
+
+
+                    <a href="#" class="ia-boton">
+
+                        Crear mi perfil →
+
+                    </a>
+
+                </section>
+
+
+                <!-- IA -->
+
+                <section class="ia">
+
+                    <div class="ia-icono">
+                        🤖
+                    </div>
+
+                    <h2>
+                        Asesor laboral IA
+                    </h2>
+
+                    <p>
+
+                        Más adelante podrás utilizar
+                        inteligencia artificial para mejorar
+                        tu hoja de vida y prepararte para
+                        entrevistas.
+
+                    </p>
+
+                    <a href="#" class="ia-boton">
+
+                        Próximamente
+
+                    </a>
+
+                </section>
+
+
+            </aside>
+
+
+        </div>
+
+
+        <!-- VOLVER -->
+
+        <div class="volver">
+
+            <a href="/">
+                ← Volver a Empléate
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+    <footer>
+
+        Empléate · Plataforma de preparación laboral
+
+    </footer>
+
+
+</body>
+
+</html>

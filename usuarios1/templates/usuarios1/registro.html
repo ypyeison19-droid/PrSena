@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Crear perfil | Empléate</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eaf8e4,
+                    #f5f8f6
+                );
+
+            color: #17251c;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            height: 72px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow:
+                0 2px 12px rgba(0,0,0,.07);
+        }
+
+
+        .logo {
+
+            font-size: 27px;
+
+            font-weight: 800;
+        }
+
+
+        .logo span {
+
+            color: #39a900;
+        }
+
+
+        .volver {
+
+            text-decoration: none;
+
+            color: #566159;
+
+            font-weight: 600;
+
+            transition: .3s;
+        }
+
+
+        .volver:hover {
+
+            color: #39a900;
+        }
+
+
+        /* =========================
+           CONTENEDOR
+        ========================= */
+
+        .contenedor {
+
+            width: 90%;
+
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 60px 0;
+        }
+
+
+        /* =========================
+           ENCABEZADO
+        ========================= */
+
+        .encabezado {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .icono {
+
+            width: 70px;
+
+            height: 70px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #dff2d6;
+
+            border-radius: 20px;
+
+            font-size: 35px;
+        }
+
+
+        .encabezado h1 {
+
+            font-size: 38px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .encabezado h1 span {
+
+            color: #39a900;
+        }
+
+
+        .encabezado p {
+
+            color: #69756d;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           FORMULARIO
+        ========================= */
+
+        .form-card {
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 40px;
+
+            box-shadow:
+                0 15px 45px rgba(35,70,45,.10);
+
+            border: 1px solid #e0e9e2;
+        }
+
+
+        .form-title {
+
+            margin-bottom: 28px;
+        }
+
+
+        .form-title h2 {
+
+            font-size: 22px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .form-title p {
+
+            color: #78827b;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           CAMPOS
+        ========================= */
+
+        .campo {
+
+            margin-bottom: 22px;
+        }
+
+
+        .campo label {
+
+            display: block;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+
+            color: #26352b;
+        }
+
+
+        .campo input {
+
+            width: 100%;
+
+            padding: 14px 15px;
+
+            border: 1px solid #d7e1da;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: .3s;
+
+            background: #fbfcfb;
+        }
+
+
+        .campo input:focus {
+
+            border-color: #39a900;
+
+            box-shadow:
+                0 0 0 3px rgba(57,169,0,.10);
+
+            background: white;
+        }
+
+
+        .campo input::placeholder {
+
+            color: #a1aaa4;
+        }
+
+
+        /* =========================
+           GRID CAMPOS
+        ========================= */
+
+        .fila {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+        }
+
+
+        /* =========================
+           ERRORES
+        ========================= */
+
+        .errores {
+
+            background: #fff1f1;
+
+            border: 1px solid #f1cccc;
+
+            color: #a33;
+
+            padding: 12px 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           BOTÓN
+        ========================= */
+
+        .boton {
+
+            width: 100%;
+
+            border: none;
+
+            background: #39a900;
+
+            color: white;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .3s;
+
+            margin-top: 10px;
+        }
+
+
+        .boton:hover {
+
+            background: #2f8d00;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(57,169,0,.20);
+        }
+
+
+        /* =========================
+           INFORMACIÓN
+        ========================= */
+
+        .info {
+
+            display: flex;
+
+            gap: 10px;
+
+            align-items: flex-start;
+
+            background: #f3f8f1;
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            margin-top: 25px;
+
+            color: #5f6b63;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        .info-icon {
+
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            text-align: center;
+
+            color: #7c8780;
+
+            padding: 25px;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .fila {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-card {
+
+                padding: 25px;
+            }
+
+
+            .encabezado h1 {
+
+                font-size: 30px;
+            }
+
+
+            .navbar {
+
+                padding: 0 5%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            Emplé<span>éate</span>
+
+        </div>
+
+
+        <a href="/usuarios1/" class="volver">
+
+            ← Volver a mi perfil
+
+        </a>
+
+    </nav>
+
+
+
+    <!-- =========================
+         CONTENIDO
+    ========================= -->
+
+    <main class="contenedor">
+
+
+        <!-- ENCABEZADO -->
+
+        <section class="encabezado">
+
+            <div class="icono">
+                👤
+            </div>
+
+
+            <h1>
+
+                Crea tu perfil
+                <span>profesional</span>
+
+            </h1>
+
+
+            <p>
+
+                Cuéntanos un poco sobre ti.
+                Esta información será la base de tu perfil
+                en Empléate.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- FORMULARIO -->
+
+        <section class="form-card">
+
+
+            <div class="form-title">
+
+                <h2>
+                    Información personal
+                </h2>
+
+                <p>
+                    Completa todos los campos para continuar.
+                </p>
+
+            </div>
+
+
+
+            {% if formulario.errors %}
+
+                <div class="errores">
+
+                    Por favor, revisa los datos ingresados.
+
+                </div>
+
+            {% endif %}
+
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- NOMBRE Y APELLIDO -->
+
+                <div class="fila">
+
+
+                    <div class="campo">
+
+                        <label for="{{ formulario.nombre.id_for_label }}">
+
+                            Nombre
+
+                        </label>
+
+                        {{ formulario.nombre }}
+
+                    </div>
+
+
+
+                    <div class="campo">
+
+                        <label for="{{ formulario.apellido.id_for_label }}">
+
+                            Apellido
+
+                        </label>
+
+                        {{ formulario.apellido }}
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- CORREO -->
+
+                <div class="campo">
+
+                    <label for="{{ formulario.correo.id_for_label }}">
+
+                        Correo electrónico
+
+                    </label>
+
+                    {{ formulario.correo }}
+
+                </div>
+
+
+
+                <!-- TELÉFONO Y CIUDAD -->
+
+                <div class="fila">
+
+
+                    <div class="campo">
+
+                        <label for="{{ formulario.telefono.id_for_label }}">
+
+                            Teléfono
+
+                        </label>
+
+                        {{ formulario.telefono }}
+
+                    </div>
+
+
+
+                    <div class="campo">
+
+                        <label for="{{ formulario.ciudad.id_for_label }}">
+
+                            Ciudad
+
+                        </label>
+
+                        {{ formulario.ciudad }}
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- BOTÓN -->
+
+                <button type="submit" class="boton">
+
+                    Crear mi perfil 🚀
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- INFORMACIÓN -->
+
+            <div class="info">
+
+                <div class="info-icon">
+                    🔒
+                </div>
+
+                <div>
+
+                    Tus datos serán utilizados para construir
+                    tu perfil profesional en Empléate.
+
+                    Más adelante podrás completar tu hoja de vida,
+                    agregar tus habilidades y prepararte para
+                    entrevistas con nuestro asistente de IA.
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <footer>
+
+        Empléate · Plataforma de preparación laboral
+
+    </footer>
+
+
+</body>
+
+</html>

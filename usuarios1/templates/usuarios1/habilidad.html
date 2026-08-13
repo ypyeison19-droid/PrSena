@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agregar habilidad | Empléate</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f3;
+            color: #26352b;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 700px;
+            margin: 50px auto;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #39a900;
+            font-weight: bold;
+        }
+
+        .tarjeta {
+            background: white;
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(35, 70, 45, .08);
+        }
+
+        .encabezado {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .icono {
+            width: 60px;
+            height: 60px;
+            background: #e8f7df;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .encabezado h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .encabezado p {
+            color: #727c75;
+        }
+
+        .formulario {
+            display: grid;
+            gap: 24px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .campo label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #dce5dd;
+            border-radius: 11px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .campo input:focus {
+            border-color: #39a900;
+            box-shadow: 0 0 0 3px rgba(57, 169, 0, .10);
+        }
+
+        .ayuda {
+            color: #7b857e;
+            font-size: 12px;
+        }
+
+        .nivel-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nivel-valor {
+            font-size: 22px;
+            font-weight: bold;
+            color: #39a900;
+        }
+
+        .barra {
+            width: 100%;
+            height: 10px;
+            background: #e7ece8;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .barra-progreso {
+            width: 50%;
+            height: 100%;
+            background: #39a900;
+            border-radius: 20px;
+            transition: width .2s ease;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+            gap: 15px;
+        }
+
+        .btn-cancelar {
+            text-decoration: none;
+            color: #657069;
+            padding: 13px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .btn-cancelar:hover {
+            background: #f1f4f1;
+        }
+
+        .btn-guardar {
+            border: none;
+            background: #39a900;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-guardar:hover {
+            background: #2f8d00;
+        }
+
+        .errores {
+            background: #fff0f0;
+            border: 1px solid #ffd0d0;
+            color: #b42318;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+
+            .contenedor {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .tarjeta {
+                padding: 23px;
+            }
+
+            .encabezado h1 {
+                font-size: 23px;
+            }
+
+            .botones {
+                flex-direction: column-reverse;
+                align-items: stretch;
+            }
+
+            .btn-cancelar,
+            .btn-guardar {
+                width: 100%;
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="contenedor">
+
+        <a
+            href="{% url 'inicio_usuarios1' %}"
+            class="volver"
+        >
+            ← Volver a mi perfil
+        </a>
+
+
+        <section class="tarjeta">
+
+            <div class="encabezado">
+
+                <div class="icono">
+                    🧠
+                </div>
+
+                <div>
+
+                    <h1>
+                        Agregar habilidad
+                    </h1>
+
+                    <p>
+                        Cuéntanos qué sabes hacer
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {% if formulario.errors %}
+
+                <div class="errores">
+
+                    <strong>
+                        Revisa los siguientes campos:
+                    </strong>
+
+                    {{ formulario.errors }}
+
+                </div>
+
+            {% endif %}
+
+
+            <form
+                method="POST"
+                class="formulario"
+            >
+
+                {% csrf_token %}
+
+
+                <div class="campo">
+
+                    <label for="{{ formulario.nombre.id_for_label }}">
+                        Nombre de la habilidad
+                    </label>
+
+                    {{ formulario.nombre }}
+
+                    <span class="ayuda">
+                        Ejemplo: Python, Excel, liderazgo, comunicación...
+                    </span>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <div class="nivel-info">
+
+                        <label for="{{ formulario.nivel.id_for_label }}">
+                            Nivel de dominio
+                        </label>
+
+                        <span
+                            class="nivel-valor"
+                            id="nivelValor"
+                        >
+                            50%
+                        </span>
+
+                    </div>
+
+                    {{ formulario.nivel }}
+
+                    <div class="barra">
+
+                        <div
+                            class="barra-progreso"
+                            id="barraProgreso"
+                        ></div>
+
+                    </div>
+
+                    <span class="ayuda">
+                        Indica qué tan cómodo te sientes utilizando
+                        esta habilidad. De 0 a 100.
+                    </span>
+
+                </div>
+
+
+                <div class="botones">
+
+                    <a
+                        href="{% url 'inicio_usuarios1' %}"
+                        class="btn-cancelar"
+                    >
+                        Cancelar
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="btn-guardar"
+                    >
+                        💾 Guardar habilidad
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        const nivelInput =
+            document.getElementById(
+                "{{ formulario.nivel.id_for_label }}"
+            );
+
+        const nivelValor =
+            document.getElementById("nivelValor");
+
+        const barraProgreso =
+            document.getElementById("barraProgreso");
+
+
+        function actualizarNivel() {
+
+            let valor = nivelInput.value;
+
+            if (valor === "") {
+                valor = 0;
+            }
+
+            nivelValor.textContent = valor + "%";
+
+            barraProgreso.style.width = valor + "%";
+        }
+
+
+        nivelInput.addEventListener(
+            "input",
+            actualizarNivel
+        );
+
+
+        actualizarNivel();
+
+    </script>
+
+</body>
+
+</html>

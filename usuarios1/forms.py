@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Usuario, Formacion, Experiencia
+from .models import Usuario, Formacion, Experiencia, Habilidad 
 
 
 class UsuarioForm(forms.ModelForm):
@@ -113,5 +113,29 @@ class ExperienciaForm(forms.ModelForm):
             'descripcion': forms.Textarea(attrs={
                 'placeholder': 'Describe tus principales funciones y responsabilidades',
                 'rows': 5
+            }),
+        }
+        
+class HabilidadForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Habilidad
+
+        fields = [
+            'nombre',
+            'nivel',
+        ]
+
+        widgets = {
+
+            'nombre': forms.TextInput(attrs={
+                'placeholder': 'Ej: Python'
+            }),
+
+            'nivel': forms.NumberInput(attrs={
+                'placeholder': 'Ej: 80',
+                'min': '0',
+                'max': '100'
             }),
         }

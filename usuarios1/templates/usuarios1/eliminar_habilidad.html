@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Eliminar habilidad | Empléate</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f3;
+            color: #26352b;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 500px;
+            margin: 100px auto;
+        }
+
+        .tarjeta {
+            background: white;
+            padding: 35px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(35, 70, 45, .08);
+        }
+
+        .icono {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #6c756e;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .nombre {
+            font-weight: bold;
+            color: #39a900;
+        }
+
+        .acciones {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        button,
+        a {
+            border: none;
+            padding: 13px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .cancelar {
+            color: #5d6861;
+            background: #eef1ee;
+        }
+
+        .eliminar {
+            color: white;
+            background: #d93025;
+        }
+
+        .eliminar:hover {
+            background: #b9251c;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <main class="contenedor">
+
+        <section class="tarjeta">
+
+            <div class="icono">
+                ⚠️
+            </div>
+
+            <h1>
+                ¿Eliminar habilidad?
+            </h1>
+
+            <p>
+
+                Estás a punto de eliminar la habilidad
+
+                <span class="nombre">
+                    "{{ habilidad.nombre }}"
+                </span>
+
+                de tu perfil.
+
+                <br>
+
+                Esta acción no se puede deshacer.
+
+            </p>
+
+            <div class="acciones">
+
+                <a
+                    href="{% url 'inicio_usuarios1' %}"
+                    class="cancelar"
+                >
+                    Cancelar
+                </a>
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="eliminar"
+                    >
+                        🗑️ Sí, eliminar
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

@@ -33,4 +33,23 @@ urlpatterns = [
         views.agregar_experiencia,
         name='agregar_experiencia'
     ),
+
+    path(
+        'habilidad/',
+        views.agregar_habilidad,
+        name='agregar_habilidad'
+    ),
+
+    path(
+        'habilidad/<int:id>/editar/',
+        views.editar_habilidad,
+        name='editar_habilidad'
+    ),
+
+    path(
+        'habilidad/<int:id>/eliminar/',
+        views.eliminar_habilidad,
+        name='eliminar_habilidad'
+    ),
+
 ]

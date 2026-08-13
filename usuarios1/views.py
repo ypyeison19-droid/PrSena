@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 
-from .models import Usuario, Formacion, Experiencia
+from .models import Usuario, Formacion, Experiencia, Habilidad
 
-from .forms import UsuarioForm, FormacionForm, ExperienciaForm
+from .forms import UsuarioForm, FormacionForm, ExperienciaForm, HabilidadForm
 
 
 def inicio(request):
@@ -17,13 +17,18 @@ def inicio(request):
         usuario=usuario
     )
 
+    habilidades = Habilidad.objects.filter(
+        usuario=usuario
+    )
+
     return render(
         request,
         'usuarios1/inicio.html',
         {
             'usuario': usuario,
             'formaciones': formaciones,
-            'experiencias': experiencias
+            'experiencias': experiencias,
+            'habilidades': habilidades
         }
     )
 
@@ -136,5 +141,87 @@ def agregar_experiencia(request):
         'usuarios1/experiencia.html',
         {
             'formulario': formulario
+        }
+    )
+    
+def agregar_habilidad(request):
+
+    usuario = Usuario.objects.last()
+
+    if request.method == 'POST':
+
+        formulario = HabilidadForm(request.POST)
+
+        if formulario.is_valid():
+
+            habilidad = formulario.save(commit=False)
+
+            habilidad.usuario = usuario
+
+            habilidad.save()
+
+            return redirect('inicio_usuarios1')
+
+    else:
+
+        formulario = HabilidadForm()
+
+    return render(
+        request,
+        'usuarios1/habilidad.html',
+        {
+            'formulario': formulario
+        }
+    )
+    
+    
+def editar_habilidad(request, id):
+
+    habilidad = Habilidad.objects.get(id=id)
+
+    if request.method == 'POST':
+
+        formulario = HabilidadForm(
+            request.POST,
+            instance=habilidad
+        )
+
+        if formulario.is_valid():
+
+            formulario.save()
+
+            return redirect('inicio_usuarios1')
+
+    else:
+
+        formulario = HabilidadForm(
+            instance=habilidad
+        )
+
+    return render(
+        request,
+        'usuarios1/habilidad.html',
+        {
+            'formulario': formulario,
+            'editar': True
+        }
+    )
+
+
+def eliminar_habilidad(request, id):
+
+    habilidad = Habilidad.objects.get(id=id)
+
+    if request.method == 'POST':
+
+        habilidad.delete()
+
+        return redirect('inicio_usuarios1')
+
+    return render(
+        request,
+        'usuarios1/eliminar_habilidad.html',
+        {
+            'habilidad': habilidad
         }
     )

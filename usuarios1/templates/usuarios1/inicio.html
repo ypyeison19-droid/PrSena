@@ -711,6 +711,18 @@
     background: #ffe0dd;
 }
 
+.experiencia-acciones {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.formacion-acciones {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
 }
 
 </style>
@@ -990,6 +1002,24 @@
 
                     </div>
 
+<div class="formacion-acciones">
+
+    <a
+        href="{% url 'editar_formacion' formacion.id %}"
+        class="btn-editar-habilidad"
+    >
+        ✏️ Editar
+    </a>
+
+    <a
+        href="{% url 'eliminar_formacion' formacion.id %}"
+        class="btn-eliminar-habilidad"
+    >
+        🗑️ Eliminar
+    </a>
+
+</div>
+
                 </article>
 
             {% endfor %}
@@ -1109,6 +1139,24 @@
                         </p>
 
                     </div>
+
+                    <div class="experiencia-acciones">
+
+    <a
+        href="{% url 'editar_experiencia' experiencia.id %}"
+        class="btn-editar-habilidad"
+    >
+        ✏️ Editar
+    </a>
+
+    <a
+        href="{% url 'eliminar_experiencia' experiencia.id %}"
+        class="btn-eliminar-habilidad"
+    >
+        🗑️ Eliminar
+    </a>
+
+</div>
 
                 </article>
 

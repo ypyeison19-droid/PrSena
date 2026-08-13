@@ -51,5 +51,29 @@ urlpatterns = [
         views.eliminar_habilidad,
         name='eliminar_habilidad'
     ),
+    
+    path(
+        'experiencia/<int:id>/editar/',
+        views.editar_experiencia,
+        name='editar_experiencia'
+    ),
+    
+    path(
+        'experiencia/<int:id>/eliminar/',
+        views.eliminar_experiencia,
+        name='eliminar_experiencia'
+    ),
+    
+    path(
+        'formacion/<int:id>/editar/',
+        views.editar_formacion,
+        name='editar_formacion'
+    ),
+    
+    path(
+        'formacion/<int:id>/eliminar/',
+        views.eliminar_formacion,
+        name='eliminar_formacion'
+    ),
 
 ]

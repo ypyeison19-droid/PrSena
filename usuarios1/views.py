@@ -114,6 +114,8 @@ def agregar_formacion(request):
         {'formulario': formulario}
     )
     
+    
+    
 def agregar_experiencia(request):
 
     usuario = Usuario.objects.last()
@@ -223,5 +225,108 @@ def eliminar_habilidad(request, id):
         'usuarios1/eliminar_habilidad.html',
         {
             'habilidad': habilidad
+        }
+    )
+    
+def editar_experiencia(request, id):
+
+    experiencia = Experiencia.objects.get(id=id)
+
+    if request.method == 'POST':
+
+        formulario = ExperienciaForm(
+            request.POST,
+            instance=experiencia
+        )
+
+        if formulario.is_valid():
+
+            formulario.save()
+
+            return redirect('inicio_usuarios1')
+
+    else:
+
+        formulario = ExperienciaForm(
+            instance=experiencia
+        )
+
+    return render(
+        request,
+        'usuarios1/experiencia.html',
+        {
+            'formulario': formulario,
+            'editar': True
+        }
+    )
+
+
+def eliminar_experiencia(request, id):
+
+    experiencia = Experiencia.objects.get(id=id)
+
+    if request.method == 'POST':
+
+        experiencia.delete()
+
+        return redirect('inicio_usuarios1')
+
+    return render(
+        request,
+        'usuarios1/eliminar_experiencia.html',
+        {
+            'experiencia': experiencia
+        }
+    )
+    
+    
+def editar_formacion(request, id):
+
+    formacion = Formacion.objects.get(id=id)
+
+    if request.method == 'POST':
+
+        formulario = FormacionForm(
+            request.POST,
+            instance=formacion
+        )
+
+        if formulario.is_valid():
+
+            formulario.save()
+
+            return redirect('inicio_usuarios1')
+
+    else:
+
+        formulario = FormacionForm(
+            instance=formacion
+        )
+
+    return render(
+        request,
+        'usuarios1/formacion.html',
+        {
+            'formulario': formulario,
+            'editar': True
+        }
+    )
+
+
+def eliminar_formacion(request, id):
+
+    formacion = Formacion.objects.get(id=id)
+
+    if request.method == 'POST':
+
+        formacion.delete()
+
+        return redirect('inicio_usuarios1')
+
+    return render(
+        request,
+        'usuarios1/eliminar_formacion.html',
+        {
+            'formacion': formacion
         }
     )

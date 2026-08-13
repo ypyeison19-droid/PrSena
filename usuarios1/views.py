@@ -7,11 +7,17 @@ from .models import Usuario, Formacion
 def inicio(request):
 
     usuario = Usuario.objects.last()
+    
+    formaciones = Formacion.objects.filter(
+        usuario=usuario
+        
+    )
 
     return render(
         request,
         'usuarios1/inicio.html',
-        {'usuario': usuario}
+        {'usuario': usuario, 
+         'formaciones': formaciones}
     )
 
 

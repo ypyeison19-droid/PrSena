@@ -1,23 +1,30 @@
 from django.shortcuts import render, redirect
 
-from .forms import UsuarioForm, FormacionForm
-from .models import Usuario, Formacion
+from .models import Usuario, Formacion, Experiencia
+
+from .forms import UsuarioForm, FormacionForm, ExperienciaForm
 
 
 def inicio(request):
 
     usuario = Usuario.objects.last()
-    
+
     formaciones = Formacion.objects.filter(
         usuario=usuario
-        
+    )
+
+    experiencias = Experiencia.objects.filter(
+        usuario=usuario
     )
 
     return render(
         request,
         'usuarios1/inicio.html',
-        {'usuario': usuario, 
-         'formaciones': formaciones}
+        {
+            'usuario': usuario,
+            'formaciones': formaciones,
+            'experiencias': experiencias
+        }
     )
 
 
@@ -100,4 +107,34 @@ def agregar_formacion(request):
         request,
         'usuarios1/formacion.html',
         {'formulario': formulario}
+    )
+    
+def agregar_experiencia(request):
+
+    usuario = Usuario.objects.last()
+
+    if request.method == 'POST':
+
+        formulario = ExperienciaForm(request.POST)
+
+        if formulario.is_valid():
+
+            experiencia = formulario.save(commit=False)
+
+            experiencia.usuario = usuario
+
+            experiencia.save()
+
+            return redirect('inicio_usuarios1')
+
+    else:
+
+        formulario = ExperienciaForm()
+
+    return render(
+        request,
+        'usuarios1/experiencia.html',
+        {
+            'formulario': formulario
+        }
     )

@@ -1,5 +1,4 @@
 from django.urls import path
-
 from . import views
 
 
@@ -29,4 +28,9 @@ urlpatterns = [
         name='agregar_formacion'
     ),
 
+    path(
+        'experiencia/',
+        views.agregar_experiencia,
+        name='agregar_experiencia'
+    ),
 ]

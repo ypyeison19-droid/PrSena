@@ -37,3 +37,28 @@ class Formacion(models.Model):
 
     def __str__(self):
         return f"{self.titulo} - {self.institucion}"
+
+
+class Experiencia(models.Model):
+
+    usuario = models.ForeignKey(
+        Usuario,
+        on_delete=models.CASCADE,
+        related_name='experiencias'
+    )
+
+    cargo = models.CharField(max_length=150)
+
+    empresa = models.CharField(max_length=150)
+
+    fecha_inicio = models.DateField()
+
+    fecha_fin = models.DateField(
+        null=True,
+        blank=True
+    )
+
+    descripcion = models.TextField()
+
+    def __str__(self):
+        return f"{self.cargo} - {self.empresa}"

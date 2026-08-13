@@ -923,6 +923,127 @@
 
 </section>
 
+<section class="formacion-seccion">
+
+    <div class="seccion-header">
+
+        <div>
+
+            <span class="seccion-icono">
+                💼
+            </span>
+
+            <div>
+
+                <h2>
+                    Experiencia laboral
+                </h2>
+
+                <p>
+                    Tu trayectoria profesional
+                </p>
+
+            </div>
+
+        </div>
+
+        <a
+            href="{% url 'agregar_experiencia' %}"
+            class="btn-agregar"
+        >
+            + Agregar
+        </a>
+
+    </div>
+
+
+    {% if experiencias %}
+
+        <div class="formaciones-lista">
+
+            {% for experiencia in experiencias %}
+
+                <article class="formacion-card">
+
+                    <div class="formacion-icono">
+                        💼
+                    </div>
+
+                    <div class="formacion-info">
+
+                        <h3>
+                            {{ experiencia.cargo }}
+                        </h3>
+
+                        <p class="institucion">
+                            {{ experiencia.empresa }}
+                        </p>
+
+                        <div class="formacion-meta">
+
+                            <span>
+                                📅 {{ experiencia.fecha_inicio }}
+                            </span>
+
+                            {% if experiencia.fecha_fin %}
+
+                                <span>
+                                    → {{ experiencia.fecha_fin }}
+                                </span>
+
+                            {% else %}
+
+                                <span>
+                                    🟢 Actualmente
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                        <p style="margin-top: 12px; color: #667169;">
+                            {{ experiencia.descripcion }}
+                        </p>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="sin-formacion">
+
+            <div>
+                💼
+            </div>
+
+            <h3>
+                Aún no tienes experiencia registrada
+            </h3>
+
+            <p>
+                Agrega tu experiencia laboral para fortalecer
+                tu perfil profesional.
+            </p>
+
+            <a
+                href="{% url 'agregar_experiencia' %}"
+                class="btn-principal"
+            >
+                Agregar mi primera experiencia
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+
 
                 <!-- PERFIL PROFESIONAL -->
 
@@ -952,25 +1073,23 @@
                     <div class="opciones">
 
 
-                        <a href="#" class="opcion">
+                        <a href="{% url 'agregar_experiencia' %}" class="opcion">
 
-                            <div class="opcion-icono">
-                                🎓
-                            </div>
+    <div class="opcion-icono">
+        💼
+    </div>
 
-                            <div>
+    <div>
+        <h3>
+            Experiencia laboral
+        </h3>
 
-                                <h3>
-                                    Formación académica
-                                </h3>
+        <p>
+            Agrega tu experiencia laboral.
+        </p>
+    </div>
 
-                                <p>
-                                    Agrega tus estudios y formación.
-                                </p>
-
-                            </div>
-
-                        </a>
+</a>
 
 
                         <a href="#" class="opcion">
